@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <!-- Dark background -->
+  <rect width="100" height="100" fill="#0a0a0f"/>
+  
+  <!-- Geometric F letter -->
+  <g transform="translate(20, 20)">
+    <!-- Main vertical bar -->
+    <rect x="0" y="0" width="12" height="60" fill="#00f0ff"/>
+    
+    <!-- Top horizontal bar -->
+    <rect x="0" y="0" width="45" height="12" fill="#00f0ff"/>
+    
+    <!-- Middle horizontal bar -->
+    <rect x="0" y="24" width="35" height="10" fill="#00f0ff"/>
+    
+    <!-- Glow effect -->
+    <rect x="0" y="0" width="12" height="60" fill="url(#glow)" opacity="0.6"/>
+    <rect x="0" y="0" width="45" height="12" fill="url(#glow)" opacity="0.6"/>
+    <rect x="0" y="24" width="35" height="10" fill="url(#glow)" opacity="0.6"/>
+  </g>
+  
+  <!-- Gradient for glow -->
+  <defs>
+    <linearGradient id="glow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00f0ff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0066ff;stop-opacity:0.5" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Outer glow -->
+  <rect width="100" height="100" fill="none" stroke="#00f0ff" stroke-width="2" opacity="0.3"/>
+</svg>

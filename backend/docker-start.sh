@@ -19,6 +19,10 @@ fi
 echo "🗄️  Running migrations..."
 php artisan migrate --force
 
+# Create admin user if not exists
+echo "👤 Creating admin user..."
+php artisan admin:create || echo "Admin user already exists or command failed"
+
 # Run seeder to populate database with sample data (optional - don't fail if it errors)
 echo "🌱 Seeding database..."
 php artisan db:seed --class=AutoDeploySeeder --force || echo "⚠️  Seeder failed, but continuing anyway..."

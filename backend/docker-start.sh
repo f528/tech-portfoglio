@@ -7,6 +7,12 @@ echo "🚀 Starting Laravel application..."
 if [ ! -f .env ]; then
     echo "📄 Creating .env file from .env.example..."
     cp .env.example .env
+    
+    # Set APP_URL from Render environment or use default
+    if [ -n "$RENDER_EXTERNAL_URL" ]; then
+        echo "🔗 Setting APP_URL to $RENDER_EXTERNAL_URL"
+        sed -i "s|APP_URL=.*|APP_URL=$RENDER_EXTERNAL_URL|g" .env
+    fi
 fi
 
 # Generate app key if not set

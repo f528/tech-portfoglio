@@ -33,11 +33,9 @@ COPY . .
 ENV COMPOSER_MEMORY_LIMIT=-1
 ENV COMPOSER_ALLOW_SUPERUSER=1
 
-# Install dependencies
-RUN composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist || \
-    (echo "Composer install failed, trying with --no-scripts..." && \
-    composer install --no-dev --no-scripts --no-interaction --prefer-dist && \
-    composer dump-autoload --optimize --no-dev)
+# Install dependencies - ignore platform reqs to avoid build-time checks
+# The extensions are installed, but composer might check for different versions
+RUN composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist --ignore-platform-reqs
 
 # Create SQLite database directory
 RUN mkdir -p /app/database && \

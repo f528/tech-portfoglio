@@ -59,21 +59,17 @@ class AutoDeploySeeder extends Seeder
             $projects = [
                 [
                     'title' => 'Tech Portfolio',
-                    'description' => 'Portfolio personale con Laravel e Next.js',
-                    'technologies' => 'Laravel, Next.js, Docker, Render, Vercel',
-                    'github_url' => 'https://github.com/tuo-username/tech-portfolio',
-                    'live_url' => 'https://tech-portfoglio-new.vercel.app',
-                    'featured' => true,
-                    'sort_order' => 1,
+                    'category' => 'fullstack',
+                    'description' => 'Portfolio personale con Laravel e Next.js deployato su Vercel e Render',
+                    'link' => 'https://tech-portfoglio-new.vercel.app',
+                    'skills' => ['Laravel', 'Next.js', 'Docker', 'Tailwind'],
                 ],
                 [
-                    'title' => 'Progetto di Esempio',
-                    'description' => 'Un altro progetto interessante',
-                    'technologies' => 'PHP, MySQL, Vue.js',
-                    'github_url' => null,
-                    'live_url' => null,
-                    'featured' => false,
-                    'sort_order' => 2,
+                    'title' => 'Progetto E-commerce',
+                    'category' => 'web',
+                    'description' => 'Piattaforma e-commerce con sistema di pagamento integrato',
+                    'link' => null,
+                    'skills' => ['PHP', 'MySQL', 'Vue.js', 'Stripe'],
                 ],
             ];
 

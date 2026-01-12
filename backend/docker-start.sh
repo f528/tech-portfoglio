@@ -19,6 +19,10 @@ fi
 echo "🗄️  Running migrations..."
 php artisan migrate --force
 
+# Run seeder to populate database with sample data
+echo "🌱 Seeding database..."
+php artisan db:seed --class=AutoDeploySeeder --force
+
 # Link storage
 echo "🔗 Linking storage..."
 php artisan storage:link || true

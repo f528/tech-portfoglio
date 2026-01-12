@@ -38,7 +38,10 @@ class ProjectResource extends Resource
                     ->columnSpanFull(),
                 Forms\Components\FileUpload::make('image')
                     ->directory('projects')
-                    ->image(),
+                    ->image()
+                    ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/gif', 'image/webp'])
+                    ->maxSize(5120)
+                    ->helperText('Max 5MB. Formati: JPG, PNG, GIF, WebP'),
                 Forms\Components\TextInput::make('link')
                     ->url()
                     ->prefix('https://'),

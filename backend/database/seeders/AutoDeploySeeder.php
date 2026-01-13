@@ -87,14 +87,12 @@ class AutoDeploySeeder extends Seeder
                     'issuer' => 'Laravel',
                     'date' => '2024-01-01',
                     'credential_url' => null,
-                    'sort_order' => 1,
                 ],
                 [
                     'name' => 'AWS Certified Developer',
                     'issuer' => 'Amazon Web Services',
                     'date' => '2023-06-15',
                     'credential_url' => null,
-                    'sort_order' => 2,
                 ],
             ];
 
@@ -112,14 +110,12 @@ class AutoDeploySeeder extends Seeder
                     'description' => 'Iniziato lo sviluppo del portfolio personale',
                     'date' => '2024-01-01',
                     'type' => 'project',
-                    'sort_order' => 1,
                 ],
                 [
                     'title' => 'Deployed on Render',
                     'description' => 'Backend deployato con successo su Render',
                     'date' => now()->toDateString(),
                     'type' => 'achievement',
-                    'sort_order' => 2,
                 ],
             ];
 
@@ -132,10 +128,10 @@ class AutoDeploySeeder extends Seeder
         // Create stats
         if (Stat::count() < 4) {
             $stats = [
-                ['label' => 'Projects', 'value' => '10+', 'icon' => 'code', 'sort_order' => 1],
-                ['label' => 'Certifications', 'value' => '5', 'icon' => 'certificate', 'sort_order' => 2],
-                ['label' => 'Years Experience', 'value' => '3+', 'icon' => 'calendar', 'sort_order' => 3],
-                ['label' => 'Technologies', 'value' => '15+', 'icon' => 'tools', 'sort_order' => 4],
+                ['label' => 'Projects', 'value' => '10+', 'icon' => 'code'],
+                ['label' => 'Certifications', 'value' => '5', 'icon' => 'certificate'],
+                ['label' => 'Years Experience', 'value' => '3+', 'icon' => 'calendar'],
+                ['label' => 'Technologies', 'value' => '15+', 'icon' => 'tools'],
             ];
 
             foreach ($stats as $stat) {

@@ -37,12 +37,13 @@ class ProjectResource extends Resource
                     ->required()
                     ->columnSpanFull(),
                 Forms\Components\FileUpload::make('image')
-                    ->disk(env('FILESYSTEM_DISK', 'public'))
-                    ->directory('projects')
                     ->image()
-                    ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/gif', 'image/webp'])
+                    ->disk('cloudinary')
+                    ->directory('portfolio/projects')
+                    ->visibility('public')
                     ->maxSize(5120)
-                    ->helperText('Max 5MB. Formati: JPG, PNG, GIF, WebP'),
+                    ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
+                    ->helperText('Upload project screenshot (max 5MB)'),
                 Forms\Components\TextInput::make('link')
                     ->url()
                     ->prefix('https://'),

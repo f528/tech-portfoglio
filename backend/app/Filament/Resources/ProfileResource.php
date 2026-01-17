@@ -24,17 +24,23 @@ class ProfileResource extends Resource
         return $form
             ->schema([
                 Forms\Components\FileUpload::make('avatar')
-                    ->disk(env('FILESYSTEM_DISK', 'public'))
-                    ->directory('profile')
-                    ->avatar()
-                    ->imageEditor()
-                    ->circleCropper()
-                    ->columnSpanFull(),
-                Forms\Components\TextInput::make('name')
-                    ->required(),
-                Forms\Components\TextInput::make('title')
-                    ->required()
-                    ->columnSpanFull(),
+                Forms\Components\Section::make('Personal Information')
+                    ->schema([
+                        Forms\Components\TextInput::make('name')
+                            ->required()
+                            ->maxLength(255),
+                        Forms\Components\TextInput::make('title')
+                            ->required()
+                            ->maxLength(255),
+                        Forms\Components\FileUpload::make('avatar')
+                            ->image()
+                            ->disk('cloudinary')
+                            ->directory('portfolio/avatars')
+                            ->visibility('public')
+                            ->maxSize(5120)
+                            ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
+                            ->helperText('Upload profile picture (max 5MB)'),
+                    ])->columns(2),
                 Forms\Components\Textarea::make('bio')
                     ->required()
                     ->columnSpanFull(),
@@ -47,10 +53,13 @@ class ProfileResource extends Resource
                     ->valueLabel('URL')
                     ->columnSpanFull(),
                 Forms\Components\FileUpload::make('cv_file')
-                    ->label('CV File (PDF)')
-                    ->disk(env('FILESYSTEM_DISK', 'public'))
+                    ->label('CV/Resume')
+                    ->disk('cloudinary')
+                    ->directory('portfolio/cvs')
+                    ->visibility('public')
+                    ->maxSize(10240)
                     ->acceptedFileTypes(['application/pdf'])
-                    ->directory('profile')
+                    ->helperText('Upload your CV in PDF format (max 10MB)')
                     ->columnSpanFull(),
             ]);
     }

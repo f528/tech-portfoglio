@@ -12,13 +12,14 @@ RUN apt-get update && apt-get install -y \
     sqlite3 \
     libsqlite3-dev \
     libzip-dev \
-    libicu-dev
+    libicu-dev \
+    libpq-dev
 
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Install PHP extensions (including intl for Filament)
-RUN docker-php-ext-install pdo_sqlite mbstring exif pcntl bcmath gd zip intl
+# Install PHP extensions (including intl for Filament and pdo_pgsql for PostgreSQL)
+RUN docker-php-ext-install pdo_sqlite pdo_pgsql mbstring exif pcntl bcmath gd zip intl
 
 # Configure PHP for file uploads
 RUN echo "upload_max_filesize = 10M" > /usr/local/etc/php/conf.d/uploads.ini && \

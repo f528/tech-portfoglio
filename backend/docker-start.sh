@@ -35,8 +35,11 @@ echo "👤 Creating admin user..."
 php artisan admin:create || echo "Admin user already exists or command failed"
 
 # Run seeder to populate database with sample data (optional - don't fail if it errors)
-echo "🌱 Seeding database..."
-php artisan db:seed --class=AutoDeploySeeder --force || echo "⚠️  Seeder failed, but continuing anyway..."
+# DISABLED: Seeder should only run ONCE on initial deploy, not every restart!
+# Uncomment this line ONLY if you want to reset all data to defaults:
+# echo "🌱 Seeding database..."
+# php artisan db:seed --class=AutoDeploySeeder --force || echo "⚠️  Seeder failed, but continuing anyway..."
+echo "⏭️  Skipping seeder (data should persist in PostgreSQL)"
 
 # Link storage (force recreate if exists)
 echo "🔗 Linking storage..."

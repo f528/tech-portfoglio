@@ -24,23 +24,20 @@ class ProfileResource extends Resource
         return $form
             ->schema([
                 Forms\Components\FileUpload::make('avatar')
-                Forms\Components\Section::make('Personal Information')
-                    ->schema([
-                        Forms\Components\TextInput::make('name')
-                            ->required()
-                            ->maxLength(255),
-                        Forms\Components\TextInput::make('title')
-                            ->required()
-                            ->maxLength(255),
-                        Forms\Components\FileUpload::make('avatar')
-                            ->image()
-                            ->disk('cloudinary')
-                            ->directory('portfolio/avatars')
-                            ->visibility('public')
-                            ->maxSize(5120)
-                            ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
-                            ->helperText('Upload profile picture (max 5MB)'),
-                    ])->columns(2),
+                    ->disk('cloudinary')
+                    ->directory('portfolio/avatars')
+                    ->avatar()
+                    ->imageEditor()
+                    ->circleCropper()
+                    ->maxSize(5120)
+                    ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
+                    ->helperText('Upload profile picture (max 5MB)')
+                    ->columnSpanFull(),
+                Forms\Components\TextInput::make('name')
+                    ->required(),
+                Forms\Components\TextInput::make('title')
+                    ->required()
+                    ->columnSpanFull(),
                 Forms\Components\Textarea::make('bio')
                     ->required()
                     ->columnSpanFull(),

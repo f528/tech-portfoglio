@@ -18,13 +18,18 @@ class TestCloudinaryUpload extends Command
 
         // 1. Check environment variables
         $this->info('1️⃣ Checking Environment Variables:');
-        $cloudName = config('cloudinary.cloud_name');
-        $apiKey = config('cloudinary.api_key');
-        $apiSecret = config('cloudinary.api_secret');
+        $cloudName = config('filesystems.disks.cloudinary.cloud_name');
+        $apiKey = config('filesystems.disks.cloudinary.api_key');
+        $apiSecret = config('filesystems.disks.cloudinary.api_secret');
 
         if (!$cloudName || !$apiKey || !$apiSecret) {
             $this->error('❌ Cloudinary credentials NOT configured!');
             $this->error('Missing: CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, or CLOUDINARY_API_SECRET');
+            $this->newLine();
+            $this->info('Current config values:');
+            $this->info('Cloud Name: ' . ($cloudName ?: 'NOT SET'));
+            $this->info('API Key: ' . ($apiKey ?: 'NOT SET'));
+            $this->info('API Secret: ' . ($apiSecret ? 'SET' : 'NOT SET'));
             return 1;
         }
 

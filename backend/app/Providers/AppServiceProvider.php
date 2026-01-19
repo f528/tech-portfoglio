@@ -19,6 +19,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // Force HTTPS URLs in production (fixes mixed content upload errors)
+        if (config('app.env') === 'production') {
+            \URL::forceScheme('https');
+        }
     }
 }

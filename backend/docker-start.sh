@@ -12,8 +12,11 @@ fi
 # Set APP_URL and ASSET_URL for production
 if [ -n "$RENDER_EXTERNAL_URL" ]; then
     echo "🔗 Configuring production URLs..."
-    export APP_URL="$RENDER_EXTERNAL_URL"
-    export ASSET_URL="$RENDER_EXTERNAL_URL"
+    # Force HTTPS scheme for Render URLs
+    export APP_URL="https://${RENDER_EXTERNAL_URL#https://}"
+    export APP_URL="${APP_URL#http://}"
+    export APP_URL="https://${APP_URL}"
+    export ASSET_URL="$APP_URL"
     echo "APP_URL set to: $APP_URL"
     echo "ASSET_URL set to: $ASSET_URL"
 else

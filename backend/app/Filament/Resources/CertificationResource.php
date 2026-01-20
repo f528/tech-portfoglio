@@ -34,15 +34,11 @@ class CertificationResource extends Resource
                     ->columnSpanFull(),
                 Forms\Components\TextInput::make('icon')
                     ->helperText('React Icon name (e.g., SiLaravel, FaLock)'),
-                Forms\Components\FileUpload::make('image')
-                    ->label('Certificate Image')
-                    ->image()
-                    ->disk('cloudinary')
-                    ->directory('portfolio/certificates')
-                    ->visibility('public')
-                    ->maxSize(5120)
-                    ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp', 'application/pdf'])
-                    ->helperText('Upload certificate image or PDF (max 5MB)'),
+                Forms\Components\TextInput::make('image')
+                    ->label('Certificate Image URL')
+                    ->url()
+                    ->placeholder('https://i.imgur.com/certificate.jpg')
+                    ->helperText('Paste direct image URL for certificate'),
                 Forms\Components\TextInput::make('credential_id')
                     ->label('Credential ID'),
                 Forms\Components\TextInput::make('credential_url')

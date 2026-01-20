@@ -36,14 +36,11 @@ class ProjectResource extends Resource
                 Forms\Components\Textarea::make('description')
                     ->required()
                     ->columnSpanFull(),
-                Forms\Components\FileUpload::make('image')
-                    ->image()
-                    ->disk('cloudinary')
-                    ->directory('portfolio/projects')
-                    ->visibility('public')
-                    ->maxSize(5120)
-                    ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
-                    ->helperText('Upload project screenshot (max 5MB)'),
+                Forms\Components\TextInput::make('image')
+                    ->label('Project Screenshot URL')
+                    ->url()
+                    ->placeholder('https://i.imgur.com/example.jpg')
+                    ->helperText('Paste direct image URL (use Imgur or any image hosting)'),
                 Forms\Components\TextInput::make('link')
                     ->url()
                     ->prefix('https://'),

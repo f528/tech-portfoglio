@@ -23,15 +23,11 @@ class ProfileResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\FileUpload::make('avatar')
-                    ->disk('cloudinary')
-                    ->directory('portfolio/avatars')
-                    ->avatar()
-                    ->imageEditor()
-                    ->circleCropper()
-                    ->maxSize(5120)
-                    ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
-                    ->helperText('Upload profile picture (max 5MB)')
+                Forms\Components\TextInput::make('avatar')
+                    ->label('Avatar Image URL')
+                    ->url()
+                    ->placeholder('https://i.imgur.com/example.jpg')
+                    ->helperText('Paste direct image URL (use Imgur, Cloudinary, or any image hosting)')
                     ->columnSpanFull(),
                 Forms\Components\TextInput::make('name')
                     ->required(),
@@ -49,14 +45,11 @@ class ProfileResource extends Resource
                     ->keyLabel('Platform')
                     ->valueLabel('URL')
                     ->columnSpanFull(),
-                Forms\Components\FileUpload::make('cv_file')
-                    ->label('CV/Resume')
-                    ->disk('cloudinary')
-                    ->directory('portfolio/cvs')
-                    ->visibility('public')
-                    ->maxSize(10240)
-                    ->acceptedFileTypes(['application/pdf'])
-                    ->helperText('Upload your CV in PDF format (max 10MB)')
+                Forms\Components\TextInput::make('cv_file')
+                    ->label('CV/Resume URL')
+                    ->url()
+                    ->placeholder('https://example.com/cv.pdf')
+                    ->helperText('Paste direct PDF URL (upload to Google Drive, Dropbox, or file hosting)')
                     ->columnSpanFull(),
             ]);
     }

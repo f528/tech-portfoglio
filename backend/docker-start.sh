@@ -69,6 +69,12 @@ php artisan filament:assets || true
 
 # Clear and cache config
 echo "⚡ Optimizing..."
+# Clear old caches first to prevent corruption
+php artisan config:clear
+php artisan route:clear  
+php artisan cache:clear
+php artisan view:clear
+# Now cache fresh
 php artisan config:cache
 php artisan route:cache
 php artisan view:cache

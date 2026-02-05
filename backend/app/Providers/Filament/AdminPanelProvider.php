@@ -57,7 +57,7 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->navigationItems([
                 \Filament\Navigation\NavigationItem::make('View Website')
-                    ->url('http://localhost:3000', shouldOpenInNewTab: true)
+                    ->url(env('FRONTEND_URL', 'http://localhost:3000'), shouldOpenInNewTab: true)
                     ->icon('heroicon-o-globe-alt')
                     ->sort(-3),
             ]);
